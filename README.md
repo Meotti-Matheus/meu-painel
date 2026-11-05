@@ -2,7 +2,6 @@
 
 Painel pessoal que roda no próprio computador e reúne em uma tela só as coisas que uso o dia todo no trabalho de suporte: favoritos, programas do Windows, agenda, escala, notas, ramais e um leitor de chave de NF-e/NFC-e.
 
-![Tela do painel](docs/print.png)
 
 ## Funcionalidades
 
