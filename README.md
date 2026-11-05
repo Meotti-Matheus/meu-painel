@@ -2,7 +2,6 @@
 
 Painel pessoal que roda no próprio computador e reúne em uma tela só as coisas que uso o dia todo no trabalho de suporte: favoritos, programas do Windows, agenda, escala, notas, ramais e um leitor de chave de NF-e/NFC-e.
 
-
 ## Funcionalidades
 
 - **Favoritos** organizados em categorias, com ícone de cada site. Arrastar para reorganizar os itens e as próprias categorias.
@@ -72,17 +71,45 @@ E abra `http://localhost:5173`.
 ## Estrutura
 
 ```
-server/            API (Fastify) e banco (SQLite)
-  src/index.js     rotas principais e regras de segurança
-  src/agenda.js    agenda e escala (Google Agenda via iCal)
-  src/ordem.js     ordem de favoritos, programas e categorias
-  src/ramais.js    ramais
-  src/icones.js    ícones de sites
-web/               interface (React + Tailwind)
-  src/Painel*.jsx  um arquivo por card
-iniciar-painel.bat prepara e liga o painel
+server/                     API (Fastify) e banco de dados (SQLite)
+  src/index.js              rotas principais, segurança e programas do Windows
+  src/db.js                 conexão e criação das tabelas
+  src/schema.js             estrutura das tabelas
+  src/agenda.js             agenda e escala (Google Agenda via iCal)
+  src/ordem.js              ordem de favoritos, programas e categorias
+  src/ramais.js             ramais
+  src/icones.js             ícones dos sites
+  .env.example              modelo das configurações
+
+web/                        interface (React + Vite + Tailwind)
+  index.html                página base
+  vite.config.js            configuração do Vite (Tailwind e ligação com a API)
+  public/                   ícone da aba
+  src/main.jsx              ponto de entrada
+  src/index.css             tema (cores, fonte, animações)
+  src/App.jsx               layout: topo, busca, relógio e colunas
+  src/Busca.jsx             busca rápida (Ctrl + K)
+  src/Cartao.jsx            card padrão (título, botões e altura ajustável)
+  src/PainelFavoritos.jsx   favoritos e categorias
+  src/PainelProgramas.jsx   programas do Windows
+  src/PainelAgenda.jsx      agenda de hoje
+  src/PainelEscala.jsx      próximo sábado de trabalho
+  src/PainelFeriados.jsx    próximo feriado
+  src/PainelNotas.jsx       notas
+  src/PainelRamais.jsx      ramais
+  src/PainelChave.jsx       leitor de chave de NF-e/NFC-e
+  src/ItemArrastavel.jsx    arrastar e soltar (dnd-kit)
+  src/DivisorColuna.jsx     ajuste de largura das colunas
+  src/ControleTamanho.jsx   botões de tamanho (− +)
+  src/AvisoErro.jsx         aviso de erro com "tentar de novo"
+  src/useTamanho.js         guarda o tamanho escolhido de cada card
+  src/compartilhado.js      estilos e funções usados em vários cards
+
+iniciar-painel.bat          prepara o site e liga o painel
+iniciar-oculto.vbs          liga o painel sem janela
+parar-painel.bat            desliga o painel
 ```
 
 ## Licença
 
-MIT
+Distribuído sob a licença MIT. Veja o arquivo [LICENSE](LICENSE).
