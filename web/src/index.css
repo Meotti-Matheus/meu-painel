@@ -1,0 +1,97 @@
+@import "tailwindcss";
+
+/* ---------- Cores, fonte e animações do tema ---------- */
+@theme {
+  --font-sans: "Inter Variable", ui-sans-serif, system-ui, sans-serif;
+
+  --color-fundo: #0d0b12;
+  /* fundo da página (quase preto, levemente roxo) */
+  --color-superficie: #15121c;
+  /* fundo dos cards */
+  --color-elevado: #1d1926;
+  /* fundo dos itens dentro dos cards */
+  --color-borda: #2b2638;
+  /* bordas e divisórias sutis */
+  --color-texto: #ece9f3;
+  /* texto principal */
+  --color-suave: #a29cb2;
+  /* texto secundário */
+  --color-apagado: #6c667a;
+  /* texto de apoio (datas, dicas) */
+  --color-acento: #a78bfa;
+  /* roxo de destaque */
+  --color-acento-forte: #7c3aed;
+  /* roxo dos botões principais */
+
+  /* Entrada dos cards: sobem um pouco e aparecem */
+  --animate-entrada: entrada 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+
+  @keyframes entrada {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+html {
+  color-scheme: dark;
+}
+/* Aumenta tudo que usa medidas relativas em ~6% */
+html {
+  font-size: 106.25%;
+}
+
+body {
+  /* Brilho roxo bem leve no canto superior */
+  background:
+    radial-gradient(900px 500px at 15% -10%, rgb(124 58 237 / 0.12), transparent 60%),
+    radial-gradient(700px 400px at 100% 0%, rgb(124 58 237 / 0.05), transparent 60%),
+    var(--color-fundo);
+  background-attachment: fixed;
+  color: var(--color-texto);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* "Mãozinha" em tudo que é clicável */
+button:not(:disabled),
+a,
+select {
+  cursor: pointer;
+}
+
+/* Contorno roxo ao navegar pelo teclado (Tab) */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--color-acento);
+  outline-offset: 2px;
+  border-radius: 8px;
+}
+
+/* Cor do texto selecionado */
+::selection {
+  background: rgb(124 58 237 / 0.35);
+}
+
+/* Barra de rolagem fina e discreta */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-borda) transparent;
+}
+
+/* Quem desativou animações no Windows não vê animação */
+@media (prefers-reduced-motion: reduce) {
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
